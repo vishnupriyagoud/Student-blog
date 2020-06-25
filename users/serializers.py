@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Users, Blogs, Admins
+from .models import Users, Blogs, Admins, Comments
 
 
 class UsersSerializer(serializers.HyperlinkedModelSerializer):
@@ -18,4 +18,7 @@ class AdminsSerializer(serializers.HyperlinkedModelSerializer):
         model = Admins
         fields = ('rollno','name','lastlogin','password')
 
-    
+class CommentsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Comments
+        fields = ('comments_id','rollno','name','comment_body','comments_date','post_id')

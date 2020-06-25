@@ -16,7 +16,7 @@ class Users(models.Model):
 
 class Blogs(models.Model):
     sno = models.AutoField(primary_key=True)
-    rollno = models.ForeignKey('Users', models.DO_NOTHING, db_column='rollno')
+    rollno = models.ForeignKey('Users', on_delete=models.CASCADE, db_column='rollno')
     name = models.CharField(max_length=60)
     post_date = models.DateTimeField()
     post_title = models.CharField(max_length=100)
@@ -24,6 +24,7 @@ class Blogs(models.Model):
     reported_user = models.IntegerField(blank=True, null=True)
 
     class Meta:
+        ordering = ['-post_date']
         managed = False
         db_table = 'blogs'
 
@@ -36,3 +37,33 @@ class Admins(models.Model):
     class Meta:
         managed = False
         db_table = 'admins'
+
+class Comments(models.Model):
+    comments_id = models.IntegerField(primary_key=True)
+    rollno = models.IntegerField()
+    name = models.CharField(max_length=60)
+    comment_body = models.CharField(max_length=400)
+    comments_date = models.DateTimeField()
+    post = models.ForeignKey(Blogs, on_delete=models.CASCADE,related_name='comments')
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        managed = False
+        db_table = 'comments'
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body, self.name)
+
+class Comment(models.Model):
+    num = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body, self.name)

@@ -6,6 +6,7 @@ router = routers.DefaultRouter()
 router.register('users', views.UsersViewSet)
 router.register('blog', views.BlogViewSet)
 router.register('admins', views.AdminsViewSet)
+router.register('comments', views.CommentsViewSet)
 
 
 
@@ -24,4 +25,5 @@ urlpatterns = [
     path('edit_db/<pk>', views.edit_post, name='edit_post'),
     path('report/<pk>', views.post_report, name='post_report'),
     path('block/<pk>', views.post_block, name='post_block'),
+    path('<slug:slug>/', views.post_comment, name='post_comment')
 ]
