@@ -1,4 +1,4 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -74,27 +74,55 @@ body {
   }
 }
 </style>
-</head>
+</head> -->
+{% extends "base.html" %} 
+{% block content %}
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        background-color: #fdfdfd;
+    }
+
+    .header {
+      padding: 30px;
+      font-size: 40px;
+      text-align: center;
+      background: white;
+    }
+    
+    .head_text {
+        color: white;
+    }
+    
+    .row {
+      padding: 10px;
+      font-size: 20px;
+      background: white;
+    }
+    .form {
+      padding-left: 100px;
+      font-size: 20px;
+      background: white;
+    }
+
+    .card {
+        box-shadow: 0 16px 48px #E3E7EB;
+    }
+</style>
 <body>
-
-<div class="header">
-  <h2>Blog Name</h2>
-</div>
-
 <div class="row">
-  <form action="{% url 'edit_post' blogs.0 %}" method="post" id="edit_form"> {% csrf_token %}
+  <form action="{% url 'edit_post' post_no %}" class="form" method="post" id="edit_form"> {% csrf_token %}
     <br/><label>Title</label><br/><br/>
-    <input type="text" id="title"  name="title" value="{{blogs.4}}" >
+    <input type="text" id="title"  name="title" value="{{title}}" ><br/><br/>
     <!-- <textarea rows="4" cols="50" id="title" name="title">{{blogs.4}}</textarea><br/><br/> -->
     <label>Content</label><br/><br/>
-    <textarea rows="4" cols="50" id="content_text" name="content_text">{{blogs.5}}</textarea><br/><br/>
+    <textarea rows="4" cols="50" id="content_text" name="content_text">{{content}}</textarea><br/><br/>
     <input type="submit" class="fadeIn fourth" value="Save">
   </form>  
 </div>
 
-<div class="footer">
-  <h2>Footer</h2>
-</div>
 
 </body>
 </html>
+{%endblock%}

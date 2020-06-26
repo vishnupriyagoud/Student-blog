@@ -65,14 +65,6 @@ def finduser(request):
     return render(request,'index1.html')
 
  
-"""def post_delete(request,pk):
-    cursor= connection.cursor()
-    row=''
-    context= {
-        'row' : cursor.execute("DELETE FROM blogs WHERE sno=pk"),
-        'blogs': cursor.fetchall()
-    }
-    return render(request,'result1.html',context)"""
 
 def post_delete(request, pk):
     post=Blogs.objects.get(sno=pk)
@@ -90,8 +82,9 @@ def post_edit(request, pk):
     cursor= connection.cursor()
     row=''
     context={
-        'row' : cursor.execute("SELECT * FROM blogs"),
-        'blogs': cursor.fetchone()
+        'post_no':post.sno,
+        'title':post.post_title,
+        'content':post.post_content,
     }
     return render(request,'result1.html',context)
 
@@ -116,11 +109,24 @@ def edit_post(request, pk):
 
 
 def post_report(request,pk):
-    return HttpResponse("reported")
+    post=Blogs.objects.get(sno=pk)
+    post.reported_user+=1
+    post.save()
+    cursor= connection.cursor()
+    row=''
+    context={
+        'row' : cursor.execute("SELECT * FROM blogs"),
+        'blogs': cursor.fetchall(),
+    }
+    return render(request,'mainpage.html',context)
 
 def post_block(request,pk):
 
     return HttpResponse("blocked")
+
+def stats(request):
+
+    return render(request,'stats.html')
 
 
 def post_comment(request, slug):
@@ -150,7 +156,6 @@ def post_comment(request, slug):
         comment_form = CommentsForm()
 
     return render(request, template_name, context)
-
 
 
 

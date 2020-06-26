@@ -25,5 +25,7 @@ urlpatterns = [
     path('edit_db/<pk>', views.edit_post, name='edit_post'),
     path('report/<pk>', views.post_report, name='post_report'),
     path('block/<pk>', views.post_block, name='post_block'),
-    path('<slug:slug>/', views.post_comment, name='post_comment')
+    path('stats/', views.stats, name='stats'),
+    path('<slug:slug>/', views.post_comment, name='post_comment'),
+    
 ]
