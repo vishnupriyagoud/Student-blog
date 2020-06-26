@@ -75,7 +75,7 @@ def post_delete(request, pk):
         'row' : cursor.execute("SELECT * FROM blogs"),
         'blogs': cursor.fetchall()
     }
-    return render(request,'result.html',context)
+    return render(request,'mainpage.html',context)
 
 def post_edit(request, pk):
     post=Blogs.objects.get(sno=pk)
@@ -105,7 +105,7 @@ def edit_post(request, pk):
             'blogs': cursor.fetchall(),
         }
         
-        return render(request,'result.html',context)
+        return render(request,'mainpage.html',context)
 
 
 def post_report(request,pk):
@@ -121,12 +121,25 @@ def post_report(request,pk):
     return render(request,'mainpage.html',context)
 
 def post_block(request,pk):
-
-    return HttpResponse("blocked")
+    post=Users.objects.get(rollno=pk)
+    post.delete()
+    cursor= connection.cursor()
+    row=''
+    context= {
+        'row' : cursor.execute("SELECT * FROM blogs"),
+        'blogs': cursor.fetchall()
+    }
+    return render(request,'mainpage.html',context)
 
 def stats(request):
-
-    return render(request,'stats.html')
+    post=Blogs.objects.values('post_date').distinct()
+    cursor= connection.cursor()
+    row=''
+    context={
+        'row' : cursor.execute("SELECT DISTINCT post_date FROM Blogs;"),
+        'blogs': cursor.fetchall(),
+    }
+    return render(request,'stats.html',context)
 
 def reported(request):
     post=Blogs.objects.all()

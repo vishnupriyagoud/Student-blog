@@ -92,7 +92,7 @@ body {
             <a href="{% url 'post_delete' row.0 %}"><button type="delete" class="btn btn-outline-dark">Delete</button></a>
             <a href="{% url 'post_edit' row.0 %}"><button type="edit" class="btn btn-outline-dark">Edit</button></a>
             <a href="{% url 'post_report' row.1 %}"><button type="report" class="btn btn-outline-dark">Report</button></a>          
-            <a href="{% url 'post_block' row.0 %}"><button type="block" class="btn btn-outline-dark">Block</button></a>
+            <a href="{% url 'post_block' row.1 %}"><button type="block" class="btn btn-outline-dark">Block</button></a>
           </div>
         {% endfor %}
 </div>

@@ -39,6 +39,7 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>User</th>
+                            <th>Post Title</th>
                             <th>Number of people reported</th>
                         </tr>
                     </thead>
@@ -47,6 +48,7 @@
                         <tr>
                             {% ifnotequal row.6 0 %}
                             <td>{{row.2}}</td>
+                            <td>{{row.4}}</td>
                             <td class="mr-2">{{row.6}}</td>
                             {% endifnotequal %}
                         </tr>

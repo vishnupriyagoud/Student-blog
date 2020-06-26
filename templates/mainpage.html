@@ -29,14 +29,6 @@
             </div>
         </div>
     </div>
-    <script>
-        $('#report_btn').on('click',function()
-        {
-            $(this).val('Reported')
-            .attr('disabled','disabled');
-            $('#theform').submit();
-        });
-    </script>
 </header>
 <div class="container">
     <div class="row">
@@ -52,8 +44,8 @@
                     <div id="theform" class="form-row">
                         <a href="{% url 'post_edit' row.0 %}"><button type="submit" class="btn btn-primary btn-sm mr-2">Edit</button></a>
                         <a href="{% url 'post_delete' row.0 %}"><button type="button" class="btn btn-danger btn-sm mr-2">Delete</button></a>
-                        <a href="{% url 'post_report' row.0 %}"><button type="submit" id="report_btn" class="btn btn-info btn-sm mr-2">Report</button></a>        
-                        <a href="{% url 'post_block' row.0 %}"><button type="button" class="btn btn-warning btn-sm mr-2">Block User</button></a>
+                        <a href="{% url 'post_report' row.0 %}"><button type="submit" id="report_btn" class="btn btn-info btn-sm mr-2">Report</button></a>      
+                        <a href="{% url 'post_block' row.1 %}"><button type="button" class="btn btn-warning btn-sm mr-2">Block User</button></a>
                     </div>
                 </div>
             </div>
