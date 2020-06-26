@@ -26,6 +26,8 @@ urlpatterns = [
     path('report/<pk>', views.post_report, name='post_report'),
     path('block/<pk>', views.post_block, name='post_block'),
     path('stats/', views.stats, name='stats'),
+    path('reported/', views.reported, name='reported'),
+    path('mainpage/', views.mainpage, name='mainpage'),
     path('<slug:slug>/', views.post_comment, name='post_comment'),
     
 ]

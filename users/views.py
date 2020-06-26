@@ -128,6 +128,26 @@ def stats(request):
 
     return render(request,'stats.html')
 
+def reported(request):
+    post=Blogs.objects.all()
+    cursor= connection.cursor()
+    row=''
+    context={
+        'row' : cursor.execute("SELECT * FROM blogs"),
+        'blogs': cursor.fetchall(),
+    }
+    return render(request,'report_users.html',context)
+
+def mainpage(request):
+    post=Blogs.objects.all()
+    cursor= connection.cursor()
+    row=''
+    context={
+        'row' : cursor.execute("SELECT * FROM blogs"),
+        'blogs': cursor.fetchall(),
+    }
+    return render(request,'mainpage.html',context)
+
 
 def post_comment(request, slug):
     template_name = 'post_detail.html'
