@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 from django.template import loader
 from django.contrib import messages 
 from .forms import CommentsForm
+from datetime import date
 # Create your views here.
 from rest_framework import viewsets
 from django.db import connection
@@ -16,7 +17,7 @@ from rest_framework.decorators import api_view
 import json
 import requests
 from datetime import datetime
-
+from django.db.models import Avg, Count, Min, Sum,DateField
 class UsersViewSet(viewsets.ModelViewSet):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
@@ -132,11 +133,11 @@ def post_block(request,pk):
     return render(request,'mainpage.html',context)
 
 def stats(request):
-    post=Blogs.objects.values('post_date').distinct()
+    post=Blogs.objects.all()
     cursor= connection.cursor()
     row=''
     context={
-        'row' : cursor.execute("SELECT DISTINCT post_date FROM Blogs;"),
+        'row' : cursor.execute("SELECT DATE_FORMAT(post_date,'%Y-%b-%d'),COUNT(*) FROM blogs GROUP BY DATE_FORMAT(post_date,'%y-%m-%d')"),
         'blogs': cursor.fetchall(),
     }
     return render(request,'stats.html',context)
