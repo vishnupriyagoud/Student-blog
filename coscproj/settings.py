@@ -79,10 +79,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'coscproj',
-        'USER': 'newuser1',
-        'PASSWORD': 'Priya1116',
-        'HOST': 'localhost',
+        'USER': 'admin',
+        'PASSWORD': 'coscskillup',
+        'HOST': 'skillup-team-09.cxgok3weok8n.ap-south-1.rds.amazonaws.com',
         'PORT': '3306',
+
     }
 }
 
