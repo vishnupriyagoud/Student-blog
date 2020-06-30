@@ -20,10 +20,10 @@
           <p class="font-weight-bold">
             {{ comment.name }}
             <span class=" text-muted font-weight-normal">
-              {{ comment.created_on }}
+              {{ comment.comments_date }}
             </span>
           </p>
-          {{ comment.body | linebreaks }}
+          {{ comment.comment_body | linebreaks }}
         </div>
         {% endfor %}
       </div>

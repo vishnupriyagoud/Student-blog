@@ -18,7 +18,7 @@ router.register('comments', views.CommentsViewSet)
 """
 urlpatterns = [
     path('', views.index1, name='index1'),
-    #path('/', include(router.urls)),
+    #path('', include(router.urls)),
     re_path('finduser/', views.finduser, name='finduser'),
     path('post/<pk>', views.post_delete, name='post_delete'),
     path('edit/<pk>', views.post_edit, name='post_edit'),
